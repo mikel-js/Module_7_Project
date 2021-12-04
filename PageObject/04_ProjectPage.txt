@@ -1,0 +1,89 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+Documentation	Project Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+# TODO: Write Precondition and Postcondition 
+
+Pre Condition	Open Browser, login to Gitlab using the credentials in the variables
+Post Condition	Close All Browsers
+Tags	Project creation, TS-3-CreateProject(For Jira project management issue reference)	
+
+#******************* Common Variables ********************
+
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+Project_Createtion_URL= https://gitlab.com/projects/new
+UserName= Michael_Laurea
+UserPassword= ********
+BlankProjectName: BlankProjectName
+TemplateProjectName: Project template
+EditedTemplateProjectName: EditedTemplateProjectName
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# Positive Test
+Be sure to follow the pre condition
+
+Create blank project
+	Go to the link for Project_Createtion_URL
+	Click the "New Project" button
+	Select "Create blank project"
+	Add project name: Project One
+	Add project description(Optional)
+	Select visibility level: Private
+	Consider to initialize README file
+	Finally, click "Create project"
+	Verify that page redirects to the project page and display the message "Project 'Project One' was successfully created."
+
+Create template project 
+	Go to the link for Project_Createtion_URL
+	Click the "New Project" button
+	Select "Create from template"
+	Select from templates available: NodeJS Express
+	Add project name: TemplateProjectName
+	Add project description(Optional)
+	Select visibility level: Private
+	Finally, click "Create project"
+	Verify that page redirects to the project page and shows "The project was successfully imported."
+
+
+Update name of template project
+	On the project page, click on the gear icon on the left side bar
+	Select "General", verify tat page redirects to project settings page
+	Edit the project name: EditedTemplateProjectName
+	Click "Save changes"
+	Vertify that page shows "Project 'Edited Project Template' was successfully updated." message
+
+Delete template project
+	On the project page, click on the gear icon on the left side bar
+	Select "General", verify tat page redirects to project settings page
+	Find the "Advanced" options and expand it
+	At the bottom, there is the option "Delete project", click it
+	A dialog will appear to warn of the project deletion
+	Type the prompt message to confirm deletion: Michael_Laurea/project-template
+	Click "Yes, delete project"
+	Verify that the project has been deleted and display a message "Project 'Michael Laurea / Edited Project Template' is in the process of being deleted."
+
+
+# Negative Test
+Create a blank project with the previous same name
+	Go to the link for Project_Createtion_URL
+	Click the "New Project" button
+	Select "Create blank project"
+	Add project name: BlankProjectName
+	Add project description(Optional)
+	Select visibility level: Private
+	Consider to initialize README file
+	Finally, click "Create project"	
+	Verify that an error message shows "The form contains the following errors:
+		Name has already been taken
+		Path has already been taken"
+

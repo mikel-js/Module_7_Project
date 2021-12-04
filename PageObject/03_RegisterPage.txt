@@ -1,0 +1,74 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+Documentation	User Registration Test scenario with verification with valid credentials.
+
+Pre Condition	Open Browser
+Post Condition	Close All Browsers
+Tags	Register, TS-2-Register(For Jira project management issue reference)
+
+
+#******************* Common Variables ********************
+
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+Registration_URL= https://gitlab.com/users/sign_up
+UserName= Michael_Laurea
+UserPassword= ********
+EmailAddress= michael.castro@student.laurea.fi
+Invalid_Username= asdasd!@#$%
+Invalid_Password= ***
+InvalidEmail= michael
+
+
+#******************** Test Cases *************************
+*** Test Case ***
+
+# Positive Test
+
+Register user with valid username and password 
+		Navigate to sign up page at, Registration_URL
+		Input name
+		Input a valid username, UserName
+		Input a valid password, UserPassword
+		Input a valid email address, EmailAddress
+		Click the recaptcha checkbox
+		Submit sign up form by clicking Register button
+		Verify email confirmation
+		Page should now be on GitLab's project creation page
+
+# Negative Test
+
+Error message Should Be Visible After Invalid or Empty Password
+    Navigate To Registration Page at, Registration_URL
+    Input Username, UserName
+    Input Password    Empty password
+    Input a valid email address		michael.castro@student.laurea.fi
+		Click the recaptcha checkbox
+		Submit sign up form by clicking Register button
+    Verify That Error message should show "Minimum length is 8 characters."
+
+Error message Should Be Visible After invalid email address
+    Navigate To Registration Page at, Registration_URL
+    Input Username, UserName
+    Input Password, Invalid_Password
+    Input a valid email address,  InvalidEmail
+		Click the recaptcha checkbox
+		Submit sign up form by clicking Register button
+    Verify That Error message should show "Please provide a valid email address."
+
+Error message Should Be Visible After clicking register without recaptcha
+    Navigate To Registration Page at, Registration_URL
+    Input Username, UserName
+    Input Password    ********
+    Input a valid email address,  InvalidEmail
+		DO NOT CHECK the recaptcha checkbox
+		Submit sign up form by clicking Register button
+    Verify That Error message should show "There was an error with the reCAPTCHA. Please solve the reCAPTCHA again."
+
+

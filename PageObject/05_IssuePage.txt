@@ -1,0 +1,63 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+Documentation	Issue Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+Pre Condition: Login to Gitlab, create a project, on the project page, click the issue option on the side bar
+
+Post Condition: Logout your account	
+
+
+#******************* Common Variables ********************
+
+
+*** Variables ***
+IssueListPage= https://gitlab.com/Michael_Laurea/project-one/-/issues
+ProjectIssuesPage= https://gitlab.com/Michael_Laurea/project-one/-/issues/1
+IssueTitle= Test Issue
+IssueDescription= Sample description
+IssueDueDate= 2021-12-05
+EditedIssueTitle= Edited Test Issue
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# Positive Test
+# TODO: 
+	Create issue
+		On the IssueListPage, click "New issue"
+		Add the issue title,	IssueTitle
+		Select "Issue" as the Type
+		Add the description, IssueDescription
+		Assign the issue to self
+		Select default milestone and labels
+		Select due date, IssueDueDate
+		Click "Create issue"
+		Verify that an "Issue 'Test Issue' created
+
+ 	Update name of issue
+		On the ProjectIssuesPage, click the pen icon with tool tip of "Edit Title and Description.
+		Change the issue title to EditedIssueTitle
+		Click "Save changes"
+		Verify that the issue title is updated
+
+	Create second issue with privious updated name
+		On the IssueListPage, click "New issue"
+		Add the issue title,	IssueTitle
+		Select "Issue" as the Type
+		Add the description, IssueDescription
+		Assign the issue to self
+		Select default milestone and labels
+		Select due date, IssueDueDate
+		Click "Create issue"
+		Verify that "Issue 'Test Issue' created
+
+  Delete first issue
+		On the IssueListPage, click the EditedIssueTitle
+		Click the pen icon with tool tip of "Edit Title and Description.
+		Find the button "Delete issue" and click it
+		A confirmation modal will appear and select "Delete issue"
+		Confirm that a message will show "The issue was successfully deleted."
