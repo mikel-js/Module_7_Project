@@ -32,15 +32,15 @@ InvalidEmail= michael
 # Positive Test
 
 Register user with valid username and password 
-		Navigate to sign up page at, Registration_URL
-		Input name
-		Input a valid username, UserName
-		Input a valid password, UserPassword
-		Input a valid email address, EmailAddress
-		Click the recaptcha checkbox
-		Submit sign up form by clicking Register button
-		Verify email confirmation
-		Page should now be on GitLab's project creation page
+	Navigate to sign up page at, Registration_URL
+	Input name
+	Input a valid username, UserName
+	Input a valid password, UserPassword
+	Input a valid email address, EmailAddress
+	Click the recaptcha checkbox
+	Submit sign up form by clicking Register button
+	Verify email confirmation
+	Page should now be on GitLab's project creation page
 
 # Negative Test
 
@@ -49,8 +49,8 @@ Error message Should Be Visible After Invalid or Empty Password
     Input Username, UserName
     Input Password    Empty password
     Input a valid email address		michael.castro@student.laurea.fi
-		Click the recaptcha checkbox
-		Submit sign up form by clicking Register button
+    Click the recaptcha checkbox
+    Submit sign up form by clicking Register button
     Verify That Error message should show "Minimum length is 8 characters."
 
 Error message Should Be Visible After invalid email address
@@ -58,8 +58,8 @@ Error message Should Be Visible After invalid email address
     Input Username, UserName
     Input Password, Invalid_Password
     Input a valid email address,  InvalidEmail
-		Click the recaptcha checkbox
-		Submit sign up form by clicking Register button
+    Click the recaptcha checkbox
+    Submit sign up form by clicking Register button
     Verify That Error message should show "Please provide a valid email address."
 
 Error message Should Be Visible After clicking register without recaptcha
@@ -67,8 +67,8 @@ Error message Should Be Visible After clicking register without recaptcha
     Input Username, UserName
     Input Password    ********
     Input a valid email address,  InvalidEmail
-		DO NOT CHECK the recaptcha checkbox
-		Submit sign up form by clicking Register button
+    DO NOT CHECK the recaptcha checkbox
+    Submit sign up form by clicking Register button
     Verify That Error message should show "There was an error with the reCAPTCHA. Please solve the reCAPTCHA again."
 
 
